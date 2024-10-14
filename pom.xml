@@ -1,91 +1,92 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>Walle</groupId>
-  <artifactId>Walle</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <packaging>war</packaging>
-	    <properties>
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>Walle</groupId>
+    <artifactId>Walle</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>war</packaging>
+
+    <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>17</java.version>
     </properties>
-  <build>
-    <plugins>
-      <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.8.1</version>
-        <configuration>
-          <release>22</release>
-        </configuration>
-      </plugin>
-      <plugin>
-        <artifactId>maven-war-plugin</artifactId>
-        <version>3.2.3</version>
-      </plugin>
-	                          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-dependency-plugin</artifactId>
-            <executions>
-                <execution>
-                    <phase>package</phase>
-                    <goals><goal>copy</goal></goals>
-                    <configuration>
-                        <artifactItems>
-                            <artifactItem>
-                                <groupId>com.heroku</groupId>
-                                <artifactId>webapp-runner</artifactId>
-                                <version>9.0.89.0</version>
-                                <destFileName>webapp-runner.jar</destFileName>
-                            </artifactItem>
-                        </artifactItems>
-                    </configuration>
-                </execution>
-            </executions>
-        </plugin>
-      
-      <plugin>
-		<groupId>org.codehaus.mojo</groupId>
-		<artifactId>jaxws-maven-plugin</artifactId>
-		<version>2.6</version>
-		
-		  <executions>
-	        <execution>
-	          <id>CountryInfoService</id>
-	          <goals> 
-	            <goal>wsimport</goal> 
-	          </goals>
-	          <configuration> 
-	             <wsdlUrls>
-		  			<wsdlUrl>http://webservices.oorsprong.org/websamples.countryinfo/countryinfoservice.wso?WSDL</wsdlUrl>
-				 </wsdlUrls>
-				 <keep>true</keep>
-				<packageName>com.soap.ws.client.countryInfo</packageName>
-				<sourceDestDir>src/main/java</sourceDestDir>
-	          </configuration> 
-	        </execution> 
-	        
-	        
-	        
-			<execution>
-	          <id>HelloService</id>
-	          <goals> 
-	            <goal>wsimport</goal> 
-	          </goals>
-	          <configuration> 
-	             <wsdlUrls>
-		  			<wsdlUrl>https://apps.learnwebservices.com/services/hello?WSDL</wsdlUrl>
-				 </wsdlUrls>
-				 <keep>true</keep>
-				<packageName>com.soap.ws.client.hello</packageName>
-				<sourceDestDir>src/main/java</sourceDestDir>
-	          </configuration> 
-	        </execution> 
-	   	  </executions>
-		
-	  </plugin>
-    </plugins>
-  </build>
-	    <repositories>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <release>22</release>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.2.3</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>com.heroku</groupId>
+                                    <artifactId>webapp-runner</artifactId>
+                                    <version>9.0.89.0</version>
+                                    <destFileName>webapp-runner.jar</destFileName>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jaxws-maven-plugin</artifactId>
+                <version>2.6</version>
+                <executions>
+                    <execution>
+                        <id>CountryInfoService</id>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <configuration>
+                            <wsdlUrls>
+                                <wsdlUrl>http://webservices.oorsprong.org/websamples.countryinfo/countryinfoservice.wso?WSDL</wsdlUrl>
+                            </wsdlUrls>
+                            <keep>true</keep>
+                            <packageName>com.soap.ws.client.countryInfo</packageName>
+                            <sourceDestDir>src/main/java</sourceDestDir>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>HelloService</id>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <configuration>
+                            <wsdlUrls>
+                                <wsdlUrl>https://apps.learnwebservices.com/services/hello?WSDL</wsdlUrl>
+                            </wsdlUrls>
+                            <keep>true</keep>
+                            <packageName>com.soap.ws.client.hello</packageName>
+                            <sourceDestDir>src/main/java</sourceDestDir>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <repositories>
         <repository>
             <id>central</id>
             <url>https://repo.maven.apache.org/maven2</url>
@@ -97,8 +98,8 @@
             </snapshots>
         </repository>
     </repositories>
- 
-  <dependencies>
+
+    <dependencies>
         <!-- Servlet API -->
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -148,14 +149,11 @@
             <artifactId>javax.activation-api</artifactId>
             <version>1.2.0</version>
         </dependency>
-    </dependencies>
-	
-	<dependency>
-	    <groupId>com.google.code.gson</groupId>
-	    <artifactId>gson</artifactId>
-	    <version>2.8.9</version>
-	</dependency>
-	
-</dependencies>
 
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.8.9</version>
+        </dependency>
+    </dependencies>
 </project>

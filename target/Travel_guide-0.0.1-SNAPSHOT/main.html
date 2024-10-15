@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script language="JavaScript" src="AJAXlib.js">
+</script>
+<SCRIPT language="JavaScript" SRC="JS.js">
+</SCRIPT>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+
+</head>
+<body> 
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <p class="navbar-brand">Travel guide</p>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarScroll">
+      <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+      
+      
+      
+        <div class="dropdown" style="margin: 0% 2%;">
+		  <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+		    Continents
+		  </button>
+		  <ul id="continents" class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+		    
+		  </ul>
+		</div>
+        
+        <div class="dropdown" style="margin: 0% 2%;">
+		  <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+		    Countries
+		  </button>
+		  <ul id="countries" class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+
+		  </ul>
+		</div>
+		
+		<div class="dropdown" style="margin: 0% 2%;">
+		  <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton3" data-bs-toggle="dropdown" aria-expanded="false">
+		    Languages
+		  </button>
+		  <ul id="languages" class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+		    
+		  </ul>
+		</div>
+		
+		<div class="dropdown" style="margin: 0% 2%;">
+		  <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton4" data-bs-toggle="dropdown" aria-expanded="false">
+		    Currencies
+		  </button>
+		  <ul id="currencies" class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+		    
+		  </ul>
+		</div>
+        
+        
+        
+        
+        
+        
+        
+        
+      </ul>
+      <form class="d-flex">
+        <input id="searchInput" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button id="searchButton" class="btn btn-outline-success" type="button">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+<h2 style="text-align: center;"><b>Choose a country from the Countries list</b></h2>
+<h2 style="text-align: center;"><b>or search for it in the search bar!</b></h2>
+
+<div style="margin-left: 2%;">
+	<p>	Hi! What`s your name? </p> 
+	
+	<form class="d-flex" id="name">
+		<input id="nameInput" class="form-control me-2" type="text" placeholder="Input your name" aria-label="Search" style="width:30%;">
+	    <button id="subName" class="btn btn-outline-success" type="button">Submit</button>
+	</form>
+	
+	<p id="greetingResult"></p>
+	
+</div>
+
+<div id="countryInfo">
+
+</div>
+
+
+
+<script>	
+	document.getElementById('searchButton').addEventListener('click', function() {
+	    const searchQuery = document.getElementById('searchInput').value.trim();
+	
+	    if (searchQuery === "") {
+	        document.getElementById('countryInfo').innerHTML = "<p>Будь ласка, введіть ISO код або назву країни для пошуку.</p>";
+	        return;
+	    }
+	
+	    const isISOCode = searchQuery.length === 2 || searchQuery.length === 3;
+	
+	    if (isISOCode) {
+	        getCountryByISOCode(searchQuery);
+	    } else {
+	        getCountryByName(searchQuery);
+	    }
+	});
+
+    document.getElementById('subName').addEventListener('click', function() {
+        var name = document.getElementById("nameInput").value;
+
+        if (name === "") {
+            document.getElementById('greetingResult').innerHTML = "Please, provide your name :(";
+            return;
+        }
+        sendHello(name);
+    });
+</script>
+
+
+</body>
+
+</html>
